@@ -1,0 +1,32 @@
+﻿@model CorporateWithBackend.ViewModels.NewProjectViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Create new project</h2>
+
+@using (Html.BeginForm("Create", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label>Name:</label><br />
+        @Html.TextBoxFor(model => model.Project.name)
+    </div>
+    <div class="form-group">
+        <label>Category:</label><br/>
+        @Html.DropDownListFor(model => model.Project.category_id, new SelectList(Model.Categories, "Id", "Name"))
+    </div>
+    <div class="form-group">
+        <label>Image:</label>
+        <input type="file" name="upload"/>
+    </div>
+    <div class="form-group">
+        <label>Description:</label><br/>
+        @Html.TextAreaFor(model => model.Project.description)
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section Styles{
+    <link href="~/Content/project.css" rel="stylesheet"/>
+}

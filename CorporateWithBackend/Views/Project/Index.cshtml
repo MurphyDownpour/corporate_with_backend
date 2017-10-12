@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CorporateWithBackend.Models.Project>
+
+@{
+    Layout = "../Shared/_Layout2.cshtml";
+}
+
+<section id="projects">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                @foreach (var project in Model)
+                {
+                    <div class="col-md-3 col-sm-6 inner">
+                        <div class="item">
+                            <div class="project-image">
+                                <img src="~/Content/img/@project.File.name" alt="">
+                                <a href="~/Content/img/@project.File.name" class="gallery-photo">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                            <div class="project-title">
+                                <div class="text">
+                                    <h3>
+                                        <a href="#">
+                                            @project.Category.name
+                                        </a>
+                                    </h3>
+                                    @Html.ActionLink("Delete", "Delete", new { id = @project.Id }, new { @class = "btn btn-danger", style = "display: inline-block" })
+                                    @Html.ActionLink("Edit", "Edit", new { id = @project.Id }, new { @class = "btn btn-primary", style = "display: inline-block" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact" class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-9">
+                <div class="text">
+                    <h2>If Need Any Help! Contact Us</h2>
+                    <p>Lorem ipsum dolor sit amet, pellentesque enim lorem quis vivamus amet. </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-3">
+                <div>
+                    <a href="#" class="btn pull-right">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Styles {
+    <link href="~/Content/project.css" rel="stylesheet"/>
+}

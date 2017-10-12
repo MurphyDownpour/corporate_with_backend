@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2dcd6d728d354712b65351e778969712" Name="Diagram1">
+        <EntityTypeShape EntityType="CorporateDBModel.Blog" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.Category" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.Comment" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.File" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.Project" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.Service" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorporateDBModel.Teammate" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <AssociationConnector Association="CorporateDBModel.FK_Blog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CorporateDBModel.FK_Blog_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CorporateDBModel.FK_Projects_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CorporateDBModel.FK_Projects_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CorporateDBModel.FK_Services_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CorporateDBModel.FK_Teammates_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
