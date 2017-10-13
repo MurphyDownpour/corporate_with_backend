@@ -77,13 +77,50 @@ namespace CorporateWithBackend.Controllers
         [HttpPost]
         public ActionResult Edit(Project project, HttpPostedFileBase upload, int id)
         {
-            var selectedItem = db.Projects.SingleOrDefault(p => p.Id == id);
-            selectedItem.name = project.name;
-            selectedItem.description = project.description;
-            selectedItem.file_id = project.file_id;
-            selectedItem.category_id = project.category_id;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (upload == null)
+            {
+                var selectedItem = db.Projects.SingleOrDefault(p => p.Id == id);
+                selectedItem.name = project.name;
+                selectedItem.description = project.description;
+                selectedItem.file_id = project.file_id;
+                selectedItem.category_id = project.category_id;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Models.File file = new Models.File();
+                string filename;
+                file.file_data = new byte[upload.ContentLength];
+                upload.InputStream.Read(file.file_data, 0, upload.ContentLength);
+                file.name = upload.FileName;
+                file.file_type = upload.ContentType;
+                filename = upload.FileName;
+                upload.SaveAs(Server.MapPath("~/Content/img/" + upload.FileName));
+                if (db.Files.SingleOrDefault(f => f.name == filename) == null)
+                {
+                    db.Files.Add(file);
+                    db.SaveChanges();
+                    var selectedItem = db.Projects.SingleOrDefault(p => p.Id == id);
+                    var selectedFile = db.Files.SingleOrDefault(f => f.name == filename);
+                    selectedItem.name = project.name;
+                    selectedItem.description = project.description;
+                    selectedItem.file_id = selectedFile.Id;
+                    selectedItem.category_id = project.category_id;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var selectedItem = db.Projects.SingleOrDefault(p => p.Id == id);
+                    selectedItem.name = project.name;
+                    selectedItem.description = project.description;
+                    selectedItem.file_id = db.Files.SingleOrDefault(f => f.name == filename).Id;
+                    selectedItem.category_id = project.category_id;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
         }
     }
 }
